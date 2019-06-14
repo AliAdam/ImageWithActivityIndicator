@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct ActivityIndicator: UIViewRepresentable {
+public struct ActivityIndicator: UIViewRepresentable {
     
     let style: UIActivityIndicatorView.Style
     

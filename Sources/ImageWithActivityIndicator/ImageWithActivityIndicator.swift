@@ -10,7 +10,7 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-struct ImageActivityIndicator : View {
+public struct ImageWithActivityIndicator : View {
 
     private let style: UIActivityIndicatorView.Style = .medium
     private let placeHolder:String
