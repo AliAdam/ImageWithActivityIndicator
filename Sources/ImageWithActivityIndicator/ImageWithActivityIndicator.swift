@@ -18,7 +18,7 @@ public struct ImageWithActivityIndicator : View {
     @ObjectBinding private var imageLoader:ImageLoader
 
     
-    init(imageURL:String,placeHolder: String = ""){
+   public init(imageURL:String,placeHolder: String = ""){
         imageLoader = ImageLoader(imageURL: imageURL)
         self.imageURL = imageURL
         self.placeHolder = placeHolder

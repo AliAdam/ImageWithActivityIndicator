@@ -10,9 +10,9 @@ import SwiftUI
 import Combine
 
 @available(iOS 13.0, *)
-class ImageLoader :BindableObject {
+public class ImageLoader :BindableObject {
     
-    var didChange = PassthroughSubject<Data,Never>()
+    public var didChange = PassthroughSubject<Data,Never>()
 
 
     var data = Data() {
@@ -23,11 +23,11 @@ class ImageLoader :BindableObject {
     let imageURL:String
 
     
-    init(imageURL:String){
+    public init(imageURL:String){
         self.imageURL = imageURL
     }
     
-      func loadImage() {
+      public func loadImage() {
         guard let url = URL(string:imageURL) else {
             return
         }
