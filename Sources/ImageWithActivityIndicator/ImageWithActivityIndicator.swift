@@ -15,13 +15,16 @@ public struct ImageWithActivityIndicator : View {
     private let style: UIActivityIndicatorView.Style = .medium
     private let placeHolder:String
     private let imageURL:String
+    private let showActivityIndicator:Bool
+
     @ObjectBinding private var imageLoader:ImageLoader
 
     
-   public init(imageURL:String,placeHolder: String = ""){
+    public init(imageURL:String, placeHolder: String = "",showActivityIndicator:Bool = true){
         imageLoader = ImageLoader(imageURL: imageURL)
         self.imageURL = imageURL
         self.placeHolder = placeHolder
+        self.showActivityIndicator = showActivityIndicator
     }
     public var body: some View {
             ZStack(){
@@ -31,7 +34,10 @@ public struct ImageWithActivityIndicator : View {
                             .resizable()
                             .scaledToFit()
                     }
-                    ActivityIndicator(style: .large)
+                    
+                    if showActivityIndicator {
+                        ActivityIndicator(style: .large)
+                    }
                 }
                 else{
                     
