@@ -23,7 +23,7 @@ public struct ImageWithActivityIndicator : View {
         self.imageURL = imageURL
         self.placeHolder = placeHolder
     }
-    var body: some View {
+    public var body: some View {
             ZStack(){
                 if  (imageLoader.data.isEmpty ) {
                     if (placeHolder != "") {
@@ -56,7 +56,7 @@ public struct ImageWithActivityIndicator : View {
 struct ImageWithActivityIndicator_Previews: PreviewProvider {
     @available(iOS 13.0, *)
     static var previews: some View {
-        ImageActivityIndicator(imageURL: "", placeHolder: "")
+        ImageWithActivityIndicator(imageURL: "", placeHolder: "")
     }
 }
 #endif
