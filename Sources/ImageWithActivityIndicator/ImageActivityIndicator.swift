@@ -10,7 +10,7 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-struct ImageWithActivityIndicator : View {
+struct ImageActivityIndicator : View {
 
     private let style: UIActivityIndicatorView.Style = .medium
     private let placeHolder:String
@@ -56,7 +56,7 @@ struct ImageWithActivityIndicator : View {
 struct ImageWithActivityIndicator_Previews: PreviewProvider {
     @available(iOS 13.0, *)
     static var previews: some View {
-        ImageWithActivityIndicator(imageURL: "", placeHolder: "")
+        ImageActivityIndicator(imageURL: "", placeHolder: "")
     }
 }
 #endif

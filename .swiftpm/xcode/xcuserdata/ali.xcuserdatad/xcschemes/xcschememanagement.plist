@@ -10,5 +10,18 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>ImageWithActivityIndicator</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ImageWithActivityIndicatorTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
