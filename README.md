@@ -4,6 +4,9 @@
 
 `ImageWithActivityIndicator` is a SwiftUI view that download and  display image from URL  and displaying Activity Indicator while loading . 
 
+# ScreenShots
+
+![N|Solid](https://github.com/AliAdam/ImageWithActivityIndicatorDemo/blob/master/preview.gif?raw=true)
 
  Demo app [ImageWithActivityIndicatorDemo](https://github.com/AliAdam/ImageWithActivityIndicatorDemo).
 
