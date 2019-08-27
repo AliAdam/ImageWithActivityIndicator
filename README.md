@@ -56,7 +56,7 @@ struct ContentView : View {
 let urls: [String]
 
 var body: some View {
-List(urls.identified(by: \.self)) { url in
+List(urls, id: \.self) { url in
 HStack {
 ImageWithActivityIndicator(imageURL: url)
 .frame(width: 100.0, height: 100.0)

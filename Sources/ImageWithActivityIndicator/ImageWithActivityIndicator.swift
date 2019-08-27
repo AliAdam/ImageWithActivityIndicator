@@ -17,7 +17,7 @@ public struct ImageWithActivityIndicator : View {
     private let imageURL:String
     private let showActivityIndicator:Bool
 
-    @ObjectBinding private var imageLoader:ImageLoader
+    @ObservedObject private var imageLoader:ImageLoader
 
     
     public init(imageURL:String, placeHolder: String = "",showActivityIndicator:Bool = true){

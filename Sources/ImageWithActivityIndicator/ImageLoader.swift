@@ -7,19 +7,11 @@
 //
 
 import SwiftUI
-import Combine
 
 @available(iOS 13.0, *)
-public class ImageLoader :BindableObject {
-    
-    public var didChange = PassthroughSubject<Data,Never>()
+public class ImageLoader: ObservableObject {
 
-
-    var data = Data() {
-        didSet {
-            didChange.send(data)
-        }
-    }
+    @Published var data = Data()
     let imageURL:String
 
     
