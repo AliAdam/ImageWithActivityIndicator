@@ -37,10 +37,12 @@ import ImageWithActivityIndicator
 
 struct ContentView : View {
 
-let url = ""
+let loader = ImageLoader(imageURL: "https://picsum.photos/300")
 
 var body: some View {
-ImageWithActivityIndicator(imageURL: url)
+ImageWithActivityIndicator(placeHolder: "", imageLoader: loader) {
+    Image(uiImage: UIImage(data:self.loader.getData()) ?? UIImage())
+}
 }
 }
 ```
