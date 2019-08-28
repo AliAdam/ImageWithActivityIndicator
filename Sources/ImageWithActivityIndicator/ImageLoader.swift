@@ -14,6 +14,9 @@ public class ImageLoader: ObservableObject {
     @Published var data = Data()
     let imageURL:String
 
+    public func getData() -> Data {
+        return data
+    }
     
     public init(imageURL:String){
         self.imageURL = imageURL
