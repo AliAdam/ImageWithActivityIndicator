@@ -14,7 +14,6 @@ public struct ImageWithActivityIndicator<Content:View> : View {
 
     private let style: UIActivityIndicatorView.Style = .medium
     private let placeHolder:String
-    private let imageURL:String
     private let showActivityIndicator:Bool
 
     @ObservedObject private var imageLoader:ImageLoader
@@ -22,8 +21,7 @@ public struct ImageWithActivityIndicator<Content:View> : View {
     var content: () -> Content
 
     
-    public init(imageURL:String, placeHolder: String = "",showActivityIndicator:Bool = true, imageLoader:ImageLoader, @ViewBuilder _ content: @escaping () -> Content){
-        self.imageURL = imageURL
+    public init(placeHolder: String = "",showActivityIndicator:Bool = true, imageLoader:ImageLoader, @ViewBuilder _ content: @escaping () -> Content){
         self.placeHolder = placeHolder
         self.showActivityIndicator = showActivityIndicator
         self.imageLoader = imageLoader
