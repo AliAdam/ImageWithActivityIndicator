@@ -37,11 +37,11 @@ import ImageWithActivityIndicator
 
 struct ContentView : View {
 
-let url = ""
+    let url = ""
 
-var body: some View {
-ImageWithActivityIndicator(imageURL: url)
-}
+    var body: some View {
+        ImageWithActivityIndicator(imageURL: url)
+    }
 }
 ```
 
@@ -53,17 +53,17 @@ import ImageWithActivityIndicator
 
 struct ContentView : View {
 
-let urls: [String]
+    let urls: [String]
 
-var body: some View {
-List(urls.identified(by: \.self)) { url in
-HStack {
-ImageWithActivityIndicator(imageURL: url)
-.frame(width: 100.0, height: 100.0)
-Text("\(url)")
-}
-}
-}
+    var body: some View {
+        List(urls.identified(by: \.self)) { url in
+            HStack {
+                ImageWithActivityIndicator(imageURL: url)
+                    .frame(width: 100.0, height: 100.0)
+                Text("\(url)")
+            }
+        }
+    }
 }
 ```
 
