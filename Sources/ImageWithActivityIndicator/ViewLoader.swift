@@ -9,30 +9,33 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-public class ImageLoader: ObservableObject {
+public class ViewLoader: ObservableObject {
 
     @Published var data = Data()
-    let imageURL:String
-
-    public func getData() -> Data {
-        return data
+    let url:String
+    
+    public init(url:String){
+        self.url = url
     }
     
-    public init(imageURL:String){
-        self.imageURL = imageURL
-    }
-    
-      public func loadImage() {
-        guard let url = URL(string:imageURL) else {
+    public func loadData() {
+        guard let url = URL(string:url) else {
             return
         }
-        
+
         URLSession.shared.dataTask(with: url){(data,_,_) in
             guard let data = data else {return}
             DispatchQueue.main.async {
                 self.data = data
             }
-            
-            }.resume()
+        }.resume()
+    }
+    
+    public func getData() -> Data {
+        return data
+    }
+    
+    public func getUrl() -> String {
+        return url
     }
 }

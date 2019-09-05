@@ -10,26 +10,25 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-public struct ImageWithActivityIndicator<Content:View> : View {
+public struct ViewWithActivityIndicator<Content:View> : View {
 
     private let style: UIActivityIndicatorView.Style = .medium
+
+    @ObservedObject private var viewLoader:ViewLoader
+    private var content: () -> Content
     private let placeHolder:String
     private let showActivityIndicator:Bool
 
-    @ObservedObject private var imageLoader:ImageLoader
-    
-    var content: () -> Content
-
-    
-    public init(placeHolder: String = "",showActivityIndicator:Bool = true, imageLoader:ImageLoader, @ViewBuilder _ content: @escaping () -> Content){
+    public init(placeHolder: String = "",showActivityIndicator:Bool = true, viewLoader:ViewLoader, @ViewBuilder _ content: @escaping () -> Content){
         self.placeHolder = placeHolder
         self.showActivityIndicator = showActivityIndicator
-        self.imageLoader = imageLoader
+        self.viewLoader = viewLoader
         self.content = content
     }
+    
     public var body: some View {
             ZStack(){
-                if  (imageLoader.data.isEmpty ) {
+                if  (viewLoader.data.isEmpty) {
                     if (placeHolder != "") {
                         Image(placeHolder)
                             .resizable()
@@ -43,17 +42,12 @@ public struct ImageWithActivityIndicator<Content:View> : View {
                 else{
                     content()
                 }
-                
-                
-                }
+            }
                 .onAppear(perform: loadImage)
-        
-
     }
     
     private  func loadImage() {
-        self.imageLoader.loadImage()
-
+        self.viewLoader.loadData()
     }
 
 }
