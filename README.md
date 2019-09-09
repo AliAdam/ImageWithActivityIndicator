@@ -37,6 +37,7 @@ import ViewWithActivityIndicator
 
 struct ContentView : View {
 
+
     let loader: ViewLoader = ViewLoader(url: "https://picsum.photos/300")
 
     var body: some View {
@@ -54,7 +55,6 @@ import SwiftUI
 import ViewWithActivityIndicator
 
 struct ContentView : View {
-
 let urls: [String]
 let loader: ViewLoader = ViewLoader(url: "https://picsum.photos/300")
 
