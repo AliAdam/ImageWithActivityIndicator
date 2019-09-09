@@ -1,47 +1,50 @@
-# ImageWithActivityIndicator
+# ViewWithActivityIndicator
 
 
 
-`ImageWithActivityIndicator` is a SwiftUI view that download and  display image from URL  and displaying Activity Indicator while loading . 
+`ViewWithActivityIndicator` is a SwiftUI view that download and  display image from URL  and displaying Activity Indicator while loading . 
 
 # ScreenShots
 
-![N|Solid](https://github.com/AliAdam/ImageWithActivityIndicatorDemo/blob/master/preview.gif?raw=true)
+![N|Solid](https://github.com/AliAdam/ViewWithActivityIndicatorDemo/blob/master/preview.gif?raw=true)
 
- Demo app [ImageWithActivityIndicatorDemo](https://github.com/AliAdam/ImageWithActivityIndicatorDemo).
+ Demo app [ViewWithActivityIndicatorDemo](https://github.com/blackwiz4rd/ViewWithActivityIndicatorDemo).
 
 ## Installation
 
-`ImageWithActivityIndicator` is a Swift Package and you can install it with Xcode 11:
-- Copy SSH `git@github.com:AliAdam/ImageWithActivityIndicator.git` or HTTPS `https://github.com/AliAdam/ImageWithActivityIndicator.git` URL from github;
+`ViewWithActivityIndicator` is a Swift Package and you can install it with Xcode 11:
+- Copy SSH `git@github.com:blackwiz4rd/ViewWithActivityIndicator.git` or HTTPS `https://github.com/blackwiz4rd/ViewWithActivityIndicator.git` URL from github;
 - Open **File/Swift Packages/Add Package Dependency...** in Xcode 11;
 - Paste the URL and follow steps.
 
 ## Usage
 
-`ImageWithActivityIndicator` must be initialized with a URL and optional placeholder image.
+`ViewWithActivityIndicator` must be initialized with a URL and optional placeholder image.
 
 ```swift
 let url = ""
 
- ImageWithActivityIndicator(imageURL: url)
+ ViewWithActivityIndicator(imageURL: url)
 
- ImageWithActivityIndicator(imageURL: url,placeHolder: "icon")
+ ViewWithActivityIndicator(imageURL: url,placeHolder: "icon")
 ``` 
 
 Using in a view:
 
 ```swift
 import SwiftUI
-import ImageWithActivityIndicator
+import ViewWithActivityIndicator
 
 struct ContentView : View {
 
-    let url = ""
+
+    let loader: ViewLoader = ViewLoader(url: "https://picsum.photos/300")
 
     var body: some View {
-        ImageWithActivityIndicator(imageURL: url)
-    }
+        ViewWithActivityIndicator(placeHolder: "", showActivityIndicator: true, viewLoader: loader) {
+            Image(uiImage: UIImage(data:self.loader.getData()) ?? UIImage())
+        }
+    } 
 }
 ```
 
@@ -49,22 +52,33 @@ Using in a list:
 
 ```swift
 import SwiftUI
-import ImageWithActivityIndicator
+import ViewWithActivityIndicator
 
 struct ContentView : View {
+let urls: [String]
+let loader: ViewLoader = ViewLoader(url: "https://picsum.photos/300")
 
-    let urls: [String]
+var body: some View {
+List(urls, id: \.self) { url in
+HStack {
+ViewWithActivityIndicator(imageURL: url)
+.frame(width: 100.0, height: 100.0)
+Text("\(url)")
+}
+}
+}
+}
+```
 
-    var body: some View {
-        List(urls.identified(by: \.self)) { url in
-            HStack {
-                ImageWithActivityIndicator(imageURL: url)
-                    .frame(width: 100.0, height: 100.0)
-                Text("\(url)")
-            }
+ViewLoaders allows to create multiple loaders given a String array:
+```swift
+@available(iOS 13.0, *)
+public struct ViewLoaders {
+    var loaders: [ViewLoader] = []
+    init(urls: [String]) {
+        for url in urls {
+            loaders.append(ViewLoader(url: url))
         }
     }
 }
 ```
-
-

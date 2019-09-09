@@ -10,25 +10,25 @@ import SwiftUI
 
 
 @available(iOS 13.0, *)
-public struct ImageWithActivityIndicator : View {
+public struct ViewWithActivityIndicator<Content:View> : View {
 
     private let style: UIActivityIndicatorView.Style = .medium
+
+    @ObservedObject private var viewLoader:ViewLoader
+    private var content: () -> Content
     private let placeHolder:String
-    private let imageURL:String
     private let showActivityIndicator:Bool
 
-    @ObjectBinding private var imageLoader:ImageLoader
-
-    
-    public init(imageURL:String, placeHolder: String = "",showActivityIndicator:Bool = true){
-        imageLoader = ImageLoader(imageURL: imageURL)
-        self.imageURL = imageURL
+    public init(placeHolder: String = "",showActivityIndicator:Bool = true, viewLoader:ViewLoader, @ViewBuilder _ content: @escaping () -> Content){
         self.placeHolder = placeHolder
         self.showActivityIndicator = showActivityIndicator
+        self.viewLoader = viewLoader
+        self.content = content
     }
+    
     public var body: some View {
             ZStack(){
-                if  (imageLoader.data.isEmpty ) {
+                if  (viewLoader.data.isEmpty) {
                     if (placeHolder != "") {
                         Image(placeHolder)
                             .resizable()
@@ -40,29 +40,24 @@ public struct ImageWithActivityIndicator : View {
                     }
                 }
                 else{
-                    
-                    Image(uiImage: UIImage(data:self.imageLoader.data) ?? UIImage(named:placeHolder) ?? UIImage())
+                    content()
                 }
-                
-                
-                }
+            }
                 .onAppear(perform: loadImage)
-        
-
     }
     
     private  func loadImage() {
-        self.imageLoader.loadImage()
-
+        self.viewLoader.loadData()
     }
 
 }
 
 #if DEBUG
+
 struct ImageWithActivityIndicator_Previews: PreviewProvider {
     @available(iOS 13.0, *)
     static var previews: some View {
-        ImageWithActivityIndicator(imageURL: "", placeHolder: "")
+        Text("not used")
     }
 }
 #endif
